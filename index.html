@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>80 Grit Capital</title>
+<meta name="description" content="80 Grit Capital is Andrew Moll's search fund: buying one founder-owned B2B services business in Spain and running it as CEO for 7+ years.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: quiet professional one-pager. Full-width deep-blue hero (ready for a photo behind an overlay), then About, owners, process, investors, name note and contact. White page, serif headings, one blue accent. Bilingual EN/ES via data-lang on #site. */
+:root {
+  --bg: #FFFFFF;
+  --bg-alt: #F5F6F8;
+  --ink: #12161D;
+  --ink-soft: #545C6B;
+  --line: #E1E4E9;
+  --accent: #1D3D63;
+  --accent-soft: #E8EEF5;
+  --logo-tile: #FFFFFF;
+  --hero-bg: #142B47;
+  --hero-ink: #FFFFFF;
+  --hero-soft: #C9D4E2;
+  --hero-line: rgba(255, 255, 255, 0.18);
+  --hero-panel: rgba(255, 255, 255, 0.08);
+  --font-display: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-body: "Inter", -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F1217; --bg-alt: #151A21; --ink: #E7EAEF; --ink-soft: #A3ABB8;
+    --line: #262D37; --accent: #8FB3DE; --accent-soft: #1A2533;
+    --hero-bg: #0E1E33; --hero-ink: #F1F4F8; --hero-soft: #B4C2D4;
+    --hero-line: rgba(255, 255, 255, 0.14); --hero-panel: rgba(255, 255, 255, 0.06);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0F1217; --bg-alt: #151A21; --ink: #E7EAEF; --ink-soft: #A3ABB8;
+  --line: #262D37; --accent: #8FB3DE; --accent-soft: #1A2533;
+  --hero-bg: #0E1E33; --hero-ink: #F1F4F8; --hero-soft: #B4C2D4;
+  --hero-line: rgba(255, 255, 255, 0.14); --hero-panel: rgba(255, 255, 255, 0.06);
+  color-scheme: dark;
+}
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 1rem; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, p, ol, ul, dl, dd, figure { margin: 0; }
+a { color: var(--accent); text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+/* Language switching */
+#site[data-lang="en"] [data-l="es"], #site[data-lang="es"] [data-l="en"] { display: none !important; }
+
+.wrap { max-width: 1080px; margin-inline: auto; padding-left: max(clamp(16px, 4vw, 40px), env(safe-area-inset-left, 0px)); padding-right: max(clamp(16px, 4vw, 40px), env(safe-area-inset-right, 0px)); }
+
+/* Hero band (header + hero share the background) */
+.hero-band {
+  background-color: var(--hero-bg);
+  background-image: var(--hero-image, none);
+  background-size: cover;
+  background-position: center;
+  color: var(--hero-ink);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100svh;
+}
+.hero-band > .hero { flex: 1; display: flex; align-items: center; }
+.hero-band > .hero > .wrap { width: 100%; }
+.hero-band.has-image::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 45% at 50% 50%, rgba(28, 12, 2, 0.45) 0%, rgba(28, 12, 2, 0) 100%), linear-gradient(180deg, rgba(28, 12, 2, 0.40) 0%, rgba(28, 12, 2, 0.08) 30%, rgba(28, 12, 2, 0.08) 70%, rgba(28, 12, 2, 0.45) 100%); }
+.hero-band.has-image .site-header .wrap { border-bottom-color: rgba(255, 255, 255, 0.16); }
+.hero-band.has-image h1, .hero-band.has-image .lede, .hero-band.has-image .eyebrow { text-shadow: 0 2px 24px rgba(20, 8, 0, 0.75), 0 1px 3px rgba(20, 8, 0, 0.6); }
+.hero-band.has-image .eyebrow { color: #F3E6D8; }
+.hero-band.has-image .wordmark, .hero-band.has-image .nav a:not(.nav-cta) { color: #FFFFFF; text-shadow: 0 1px 10px rgba(20, 8, 0, 0.8); }
+.hero-band > * { position: relative; }
+
+.site-header .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 28px; padding-block: 18px; border-bottom: 1px solid var(--hero-line); }
+.wordmark { font-family: var(--font-display); font-weight: 600; font-size: 1.25rem; color: var(--hero-ink); text-decoration: none; letter-spacing: -0.01em; }
+.nav { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 22px; }
+.nav a { color: var(--hero-soft); text-decoration: none; font-size: 0.9375rem; font-weight: 500; }
+.nav a:hover { color: var(--hero-ink); }
+.nav a.nav-cta { color: var(--hero-bg); background: var(--hero-ink); padding: 8px 14px; border-radius: 6px; }
+.lang { display: inline-flex; border: 1px solid var(--hero-line); border-radius: 6px; overflow: hidden; }
+.lang button { font: inherit; font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.04em; padding: 6px 10px; background: transparent; color: var(--hero-soft); border: 0; cursor: pointer; }
+.lang button[aria-pressed="true"] { background: var(--hero-ink); color: var(--hero-bg); }
+.hero-band :focus-visible { outline-color: var(--hero-ink); }
+
+.hero .wrap { display: grid; justify-items: center; text-align: center; padding-block: clamp(48px, 8vw, 96px); }
+.hero-copy { display: grid; gap: 24px; justify-items: center; min-width: 0; max-width: 900px; }
+.hero h1 { font-size: clamp(2.2rem, 1.3rem + 3.6vw, 4rem); max-width: 22ch; }
+.hero .lede { margin-inline: auto; }
+.hero .ctas { justify-content: center; }
+.eyebrow { font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--hero-soft); }
+h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(2.1rem, 1.4rem + 2.8vw, 3.3rem); line-height: 1.12; letter-spacing: -0.015em; text-wrap: balance; }
+.lede { font-size: 1.125rem; color: var(--hero-soft); max-width: 54ch; }
+.ctas { display: flex; flex-wrap: wrap; gap: 12px; padding-top: 4px; }
+.btn { display: inline-flex; align-items: center; font-weight: 600; font-size: 0.9375rem; padding: 12px 18px; border-radius: 6px; text-decoration: none; border: 1.5px solid var(--accent); }
+.btn:hover { opacity: 0.9; }
+.btn-light { background: var(--hero-ink); color: var(--hero-bg); border-color: var(--hero-ink); }
+.btn-outline-light { background: transparent; color: var(--hero-ink); border-color: var(--hero-ink); }
+.btn-secondary { background: transparent; color: var(--accent); }
+
+
+/* Logo row */
+.logos { background: #FFFFFF; border-bottom: 1px solid #E1E4E9; }
+.logos .wrap { padding-block: 28px; display: grid; gap: 16px; }
+.logos .label { font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #545C6B; text-align: center; }
+.logo-row { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 12px; }
+.logo-row li { display: grid; grid-template-rows: 52px auto; align-items: center; justify-items: center; gap: 8px; text-align: center; padding: 14px 10px 12px; border: 1px solid #E1E4E9; border-radius: 8px; background: #FFFFFF; min-width: 0; }
+/* Logos are sized by visual area (height = sqrt(area / aspect ratio)) so wide wordmarks and square marks read the same */
+.logo-row img { display: block; height: var(--h); width: auto; max-width: 100%; object-fit: contain; }
+.logo-row .logo-sub { font-size: 0.75rem; color: #545C6B; margin: 0; }
+.logo-row .logo-name { color: #12161D; }
+.logo-row .perk-badge { display: inline-flex; align-items: center; justify-content: center; background: #14140F; border-radius: 6px; padding: 7px 12px; max-width: 100%; }
+.logo-row .perk-badge img { height: var(--h); }
+.logo-name { font-family: var(--font-display); font-weight: 600; font-size: 1rem; line-height: 1.2; color: var(--ink); }
+.logo-sub { display: block; font-family: var(--font-body); font-weight: 400; font-size: 0.75rem; color: var(--ink-soft); margin-top: 2px; }
+@media (max-width: 900px) { .logo-row { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .logo-row { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* Sections */
+.section { padding-block: clamp(56px, 8vw, 96px); }
+.section + .section { border-top: 1px solid var(--line); }
+.section.alt { background: var(--bg-alt); border-top: 0; }
+.section.alt + .section { border-top: 0; }
+.section-head { display: grid; gap: 14px; max-width: 680px; margin-bottom: 36px; }
+.kicker { font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+h2 { font-family: var(--font-display); font-weight: 600; font-size: clamp(1.7rem, 1.25rem + 1.6vw, 2.35rem); line-height: 1.18; letter-spacing: -0.01em; text-wrap: balance; }
+h3 { font-family: var(--font-display); font-weight: 600; font-size: 1.2rem; line-height: 1.3; }
+.section-head p { color: var(--ink-soft); font-size: 1.0625rem; }
+.two-col { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px 56px; align-items: start; }
+.prose { display: grid; gap: 16px; min-width: 0; align-content: start; }
+.prose p { max-width: 62ch; }
+
+/* About */
+.about { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 32px 56px; align-items: start; }
+.portrait { width: 100%; max-width: 220px; aspect-ratio: 4 / 5; border-radius: 10px; background: var(--accent-soft); display: grid; place-items: center; color: var(--accent); font-family: var(--font-display); font-weight: 600; font-size: 3.5rem; overflow: hidden; }
+.portrait img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.portrait-caption { margin-top: 12px; font-size: 0.875rem; color: var(--ink-soft); }
+.portrait-caption strong { display: block; color: var(--ink); font-weight: 600; }
+.timeline { list-style: none; padding: 0; border-top: 1px solid var(--line); margin-top: 8px; }
+.timeline li { display: grid; grid-template-columns: 104px minmax(0, 1fr); gap: 2px 20px; padding-block: 13px; border-bottom: 1px solid var(--line); }
+.timeline .yrs { color: var(--ink-soft); font-size: 0.875rem; font-variant-numeric: tabular-nums; padding-top: 1px; }
+.timeline .org { font-weight: 600; }
+.timeline .org .role { font-weight: 400; color: var(--ink-soft); }
+.timeline .note { display: block; color: var(--ink-soft); font-size: 0.9375rem; }
+
+/* Criteria */
+.criteria { display: grid; grid-template-columns: 130px minmax(0, 1fr); border-top: 1px solid var(--line); min-width: 0; }
+.criteria dt, .criteria dd { padding-block: 13px; border-bottom: 1px solid var(--line); min-width: 0; }
+.criteria dt { color: var(--ink-soft); font-size: 0.875rem; padding-top: 15px; }
+.criteria dd { font-weight: 500; }
+.criteria dd small { display: block; font-weight: 400; color: var(--ink-soft); font-size: 0.875rem; line-height: 1.5; margin-top: 2px; }
+
+/* Owner promises */
+.promises { list-style: none; padding: 0; margin: 40px 0 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.promises li { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 20px 22px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.promises p { color: var(--ink-soft); font-size: 0.9375rem; }
+@media (max-width: 900px) { .promises { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .promises { grid-template-columns: minmax(0, 1fr); } }
+
+/* Steps */
+.process { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.process li { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 22px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.step-n { display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-weight: 600; font-size: 0.875rem; }
+.process p { color: var(--ink-soft); font-size: 0.9375rem; }
+.steps-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.status { margin-top: 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; padding: 16px 20px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); }
+.status p { flex: 1 1 300px; font-size: 0.9375rem; min-width: 0; }
+.pill { display: inline-flex; align-items: center; gap: 8px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); background: var(--accent-soft); border-radius: 999px; padding: 5px 11px; white-space: nowrap; }
+.pill::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+
+/* Name note */
+.name-note { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 20px; align-items: start; max-width: 760px; }
+.grit-badge { font-family: var(--font-display); font-weight: 600; font-size: 1.5rem; color: var(--accent); border: 1.5px solid var(--accent); border-radius: 8px; padding: 6px 12px; line-height: 1.2; }
+
+/* Contact */
+.contact { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px 56px; align-items: start; }
+.contact-card { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 8px 22px; min-width: 0; }
+.contact-row { display: grid; grid-template-columns: 96px minmax(0, 1fr) auto; align-items: center; gap: 8px 14px; padding-block: 14px; border-bottom: 1px solid var(--line); }
+.contact-row:last-child { border-bottom: 0; }
+.contact-row .k { color: var(--ink-soft); font-size: 0.875rem; }
+.contact-row .v { font-weight: 500; min-width: 0; overflow-wrap: anywhere; }
+.contact-row .v.select { user-select: all; -webkit-user-select: all; }
+.copy-btn { font: inherit; font-size: 0.8125rem; font-weight: 600; color: var(--accent); background: var(--accent-soft); border: 0; border-radius: 6px; padding: 6px 12px; cursor: pointer; min-width: 84px; }
+
+.footer { border-top: 1px solid var(--line); }
+.footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding-block: 24px 36px; font-size: 0.8125rem; color: var(--ink-soft); }
+
+@media (max-width: 900px) {
+  .hero .wrap, .two-col, .contact { grid-template-columns: minmax(0, 1fr); }
+  .process, .steps-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 720px) {
+  .nav a:not(.nav-cta) { display: none; }
+}
+@media (max-width: 640px) {
+  .process, .steps-4 { grid-template-columns: minmax(0, 1fr); }
+  .about { grid-template-columns: minmax(0, 1fr); }
+  .portrait { max-width: 160px; font-size: 2.6rem; }
+  .criteria { grid-template-columns: minmax(0, 1fr); }
+  .criteria dt { border-bottom: 0; padding-bottom: 0; }
+  .criteria dd { padding-top: 2px; }
+  .timeline li { grid-template-columns: minmax(0, 1fr); }
+  .contact-row { grid-template-columns: minmax(0, 1fr) auto; }
+  .contact-row .k { grid-column: 1 / -1; }
+  .name-note { grid-template-columns: minmax(0, 1fr); }
+  .name-note .grit-badge { justify-self: start; }
+}
+</style>
+<meta property="og:title" content="80 Grit Capital">
+<meta property="og:description" content="Andrew Moll's search fund: buying one founder-owned B2B services business in Spain.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect width=%2264%22 height=%2264%22 rx=%2212%22 fill=%22%23142B47%22/%3E%3Ctext x=%2232%22 y=%2243%22 font-family=%22Georgia,serif%22 font-size=%2230%22 font-weight=%22700%22 fill=%22white%22 text-anchor=%22middle%22%3E80%3C/text%3E%3C/svg%3E">
+<style>body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
+</head>
+<body>
+
+<div id="site" data-lang="en">
+
+<div class="hero-band has-image" id="top" style="--hero-image: url('images/hero-wood-2.webp?v=1')">
+  <header class="site-header">
+    <div class="wrap">
+      <a class="wordmark" href="#top">80 Grit Capital</a>
+      <nav class="nav" aria-label="Sections">
+        <a href="#about"><span data-l="en">About</span><span data-l="es">Sobre mí</span></a>
+        <a href="#owners"><span data-l="en">For owners</span><span data-l="es">Propietarios</span></a>
+        <a href="#process"><span data-l="en">Process</span><span data-l="es">Proceso</span></a>
+        <a href="#investors"><span data-l="en">For investors</span><span data-l="es">Inversores</span></a>
+        <a class="nav-cta" href="#contact"><span data-l="en">Get in touch</span><span data-l="es">Contacto</span></a>
+        <div class="lang" role="group" aria-label="Language / Idioma">
+          <button type="button" id="lang-en" data-set-lang="en" aria-pressed="true">EN</button>
+          <button type="button" id="lang-es" data-set-lang="es" aria-pressed="false">ES</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" aria-labelledby="hero-h">
+    <div class="wrap">
+      <div class="hero-copy">
+        <p class="eyebrow"><span data-l="en">Search fund · Spain</span><span data-l="es">Search fund · España</span></p>
+        <h1 id="hero-h"><span data-l="en">Buying one founder-owned B2B services business in Spain</span><span data-l="es">Comprando una empresa de servicios B2B de fundador en España</span></h1>
+        <div class="ctas">
+          <a class="btn btn-light" href="#owners"><span data-l="en">I own a business</span><span data-l="es">Tengo una empresa</span></a>
+          <a class="btn btn-outline-light" href="#investors"><span data-l="en">I'm an investor</span><span data-l="es">Soy inversor</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<main>
+  <section class="section" id="about" aria-labelledby="about-h">
+    <div class="wrap about">
+      <div>
+        <div class="portrait"><img src="images/andrew-headshot-color.webp?v=3" alt="Andrew Moll" width="640" height="800"></div>
+        <p class="portrait-caption"><strong>Andrew Moll</strong><span data-l="en">Founder, 80 Grit Capital</span><span data-l="es">Fundador, 80 Grit Capital</span></p>
+      </div>
+      <div class="prose">
+        <p class="kicker"><span data-l="en">About</span><span data-l="es">Sobre mí</span></p>
+        <h2 id="about-h"><span data-l="en">Engineer, operator, owner</span><span data-l="es">Ingeniero, operador y empresario</span></h2>
+        <p data-l="en">I grew up in a small town in the US and studied industrial and operations engineering at the University of Michigan. After four years at Microsoft in the early days of Azure, I did an MBA at IESE. I've lived in Barcelona for nearly ten years.</p>
+        <p data-l="es">Crecí en un pueblo pequeño de Estados Unidos y estudié ingeniería industrial y de operaciones en la Universidad de Michigan. Después de cuatro años en Microsoft, en los inicios de Azure, hice un MBA en el IESE. Llevo casi diez años viviendo en Barcelona.</p>
+        <p data-l="en">Since then I've built B2B software products at Barcelona scale-ups, and in 2023 I bought Fromagerie Can Luc, a cheese and wine shop, with a partner. We opened a second shop and grew EBITDA 89% in under three years. I sold my stake in July 2026 at 20% IRR.</p>
+        <p data-l="es">Desde entonces he creado productos de software B2B en scale-ups de Barcelona y, en 2023, compré con un socio Fromagerie Can Luc, una tienda de quesos y vinos. Abrimos una segunda tienda y aumentamos el EBITDA un 89% en menos de tres años. Vendí mi participación en julio de 2026 con una TIR del 20%.</p>
+        <ol class="timeline">
+          <li><span class="yrs">2023–2026</span><span><span class="org">Fromagerie Can Luc <span class="role">· <span data-l="en">Owner-operator</span><span data-l="es">Propietario y gestor</span></span></span><span class="note"><span data-l="en">Bought with a partner and no outside equity. Opened a second location. Revenue +45%, EBITDA +89%. Sold my stake at 20% IRR.</span><span data-l="es">Comprada con un socio, sin capital externo. Abrimos una segunda tienda. Ingresos +45%, EBITDA +89%. Vendí mi participación con una TIR del 20%.</span></span></span></li>
+          <li><span class="yrs">2023–2025</span><span><span class="org">HappyScribe <span class="role">· Head of Product and Design</span></span><span class="note"><span data-l="en">ARR from €2.5M to €5M in 18 months.</span><span data-l="es">ARR de 2,5 M€ a 5 M€ en 18 meses.</span></span></span></li>
+          <li><span class="yrs">2020–2023</span><span><span class="org">Abacum <span class="role">· Director of Product</span></span><span class="note"><span data-l="en">Pre-seed to Series A. ARR from €20k to €1M+, with a team of nine.</span><span data-l="es">De pre-seed a Serie A. ARR de 20 k€ a más de 1 M€, con un equipo de nueve personas.</span></span></span></li>
+          <li><span class="yrs">2018–2020</span><span><span class="org">TravelPerk <span class="role">· <span data-l="en">Product and operations</span><span data-l="es">Producto y operaciones</span></span></span><span class="note"><span data-l="en">SaaS revenue from 4% to 30% of company revenue in 12 months.</span><span data-l="es">Los ingresos SaaS pasaron del 4% al 30% de la facturación en 12 meses.</span></span></span></li>
+          <li><span class="yrs">2012–2016</span><span><span class="org">Microsoft <span class="role">· <span data-l="en">Technology consultant</span><span data-l="es">Consultor tecnológico</span></span></span><span class="note"><span data-l="en">Early Azure and big data, for Fortune 100 clients.</span><span data-l="es">Primeros años de Azure y big data, para clientes Fortune 100.</span></span></span></li>
+          <li><span class="yrs"><span data-l="en">Education</span><span data-l="es">Formación</span></span><span><span class="org">IESE Business School <span class="role">· MBA</span></span><span class="note"><span data-l="en">University of Michigan · Industrial and operations engineering</span><span data-l="es">Universidad de Michigan · Ingeniería industrial y de operaciones</span></span></span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+<section class="logos" aria-labelledby="logos-h">
+  <div class="wrap">
+    <p class="label" id="logos-h"><span data-l="en">Where I've built, operated and studied</span><span data-l="es">Dónde he creado, gestionado y estudiado</span></p>
+    <ul class="logo-row">
+      <li><img src="logos/can-luc.svg?v=3" alt="Fromagerie Can Luc" style="--h:33px"><span class="logo-sub"><span data-l="en">Owner-operator</span><span data-l="es">Propietario</span></span></li>
+      <li><img src="logos/happyscribe-black.svg?v=4" alt="HappyScribe" style="--h:17px"><span class="logo-sub">Head of Product</span></li>
+      <li><img src="logos/abacum.svg?v=3" alt="Abacum" style="--h:19px"><span class="logo-sub">Director of Product</span></li>
+      <li><span class="perk-badge"><img src="logos/perk-green.svg?v=3" alt="Perk (formerly TravelPerk)" style="--h:24px"></span><span class="logo-sub"><span data-l="en">Product and ops</span><span data-l="es">Producto y operaciones</span></span></li>
+      <li><img src="logos/microsoft.svg?v=3" alt="Microsoft" style="--h:20px"><span class="logo-sub">Azure</span></li>
+      <li><img src="logos/iese.svg?v=4" alt="IESE Business School" style="--h:32px"><span class="logo-sub">MBA</span></li>
+      <li><img src="logos/university-of-michigan.png?v=3" alt="University of Michigan" style="--h:42px"><span class="logo-sub"><span data-l="en">Engineering</span><span data-l="es">Ingeniería</span></span></li>
+    </ul>
+  </div>
+</section>
+
+  <section class="section alt" id="owners" aria-labelledby="owners-h">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker"><span data-l="en">For business owners</span><span data-l="es">Para propietarios</span></p>
+        <h2 id="owners-h"><span data-l="en">A buyer who runs the business himself</span><span data-l="es">Un comprador que dirige la empresa en persona</span></h2>
+        <p data-l="en">You built a company that works, and at some point you'll want to step back. I'm buying one company, and I'll run it day to day for 7+ years, with your team and your customers at the centre of it.</p>
+        <p data-l="es">Usted ha construido una empresa que funciona y, en algún momento, querrá dar un paso atrás. Voy a comprar una sola empresa y la dirigiré en el día a día durante más de 7 años, con su equipo y sus clientes en el centro.</p>
+      </div>
+      <div class="two-col">
+        <div class="prose">
+          <h3><span data-l="en">What you can expect</span><span data-l="es">Qué puede esperar</span></h3>
+          <p data-l="en">You deal with me directly, from the first call to closing, and I'm the one who runs the company afterwards. Selling to me is an alternative to selling to a competitor or a private equity fund, and you'll get to know who is taking on your legacy.</p>
+          <p data-l="es">Trata conmigo directamente, desde la primera llamada hasta el cierre, y soy yo quien dirige la empresa después. Venderme a mí es una alternativa a vender a un competidor o a un fondo de capital riesgo, y podrá conocer a quien se hace cargo de su legado.</p>
+          <p data-l="en">Conversations are confidential from the first call, numbers are only shared under an NDA, and we'll speak within a week of you getting in touch. I'll explain price, structure and timing plainly, in Spanish or English.</p>
+          <p data-l="es">Las conversaciones son confidenciales desde la primera llamada, las cifras solo se comparten bajo un acuerdo de confidencialidad y hablaremos en menos de una semana desde su primer contacto. Le explicaré el precio, la estructura y los plazos con claridad, en español o en inglés.</p>
+          <p data-l="en">The deal can be a full sale, or part now and part later if you want to stay invested. Most of the price is paid at closing. If you want to stay involved, there's a place for you as an adviser.</p>
+          <p data-l="es">La operación puede ser una venta total, o una parte ahora y otra más adelante si quiere seguir invertido. La mayor parte del precio se paga al cierre. Si quiere seguir implicado, hay un lugar para usted como asesor.</p>
+          <p data-l="en">I've sat on both sides of the table. In 2023 I bought a Barcelona business with a partner, ran it, grew it and sold my stake in 2026. I know what it takes to hand over something you built.</p>
+          <p data-l="es">Conozco los dos lados de la mesa. En 2023 compré una empresa en Barcelona con un socio, la dirigí, la hice crecer y vendí mi participación en 2026. Sé lo que supone traspasar algo que uno ha construido.</p>
+        </div>
+        <div class="prose">
+          <h3><span data-l="en">What I'm looking for</span><span data-l="es">Qué busco</span></h3>
+          <dl class="criteria">
+            <dt><span data-l="en">Sector</span><span data-l="es">Sector</span></dt>
+            <dd><span data-l="en">Recurring B2B services<small>Starting with managed IT services, testing and inspection, and corporate training. Other B2B services that fit are welcome.</small></span><span data-l="es">Servicios B2B recurrentes<small>Empiezo por servicios gestionados de TI, ensayos e inspección, y formación corporativa. Otros servicios B2B que encajen también son bienvenidos.</small></span></dd>
+            <dt><span data-l="en">Location</span><span data-l="es">Ubicación</span></dt><dd><span data-l="en">Anywhere in Spain</span><span data-l="es">Cualquier lugar de España</span></dd>
+            <dt><span data-l="en">Size</span><span data-l="es">Tamaño</span></dt><dd><span data-l="en">€1–3M EBITDA</span><span data-l="es">1–3 M€ de EBITDA</span></dd>
+            <dt><span data-l="en">Margin</span><span data-l="es">Margen</span></dt><dd><span data-l="en">15% EBITDA margin or higher</span><span data-l="es">Margen EBITDA del 15% o superior</span></dd>
+            <dt><span data-l="en">Ownership</span><span data-l="es">Propiedad</span></dt><dd><span data-l="en">Founder- or family-owned</span><span data-l="es">De fundador o familiar</span></dd>
+            <dt><span data-l="en">History</span><span data-l="es">Trayectoria</span></dt><dd><span data-l="en">3+ years of growth and profits</span><span data-l="es">Más de 3 años de crecimiento y beneficios</span></dd>
+            <dt><span data-l="en">Revenue</span><span data-l="es">Ingresos</span></dt><dd><span data-l="en">Mostly recurring contracts</span><span data-l="es">Mayoritariamente contratos recurrentes</span></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="process" aria-labelledby="process-h">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker"><span data-l="en">The process</span><span data-l="es">El proceso</span></p>
+        <h2 id="process-h"><span data-l="en">How a sale to 80 Grit Capital works</span><span data-l="es">Cómo funciona una venta a 80 Grit Capital</span></h2>
+        <p data-l="en">Every deal is different, but most follow these steps. You set the pace, and nothing is binding until signing.</p>
+        <p data-l="es">Cada operación es distinta, pero la mayoría sigue estos pasos. Usted marca el ritmo y nada es vinculante hasta la firma.</p>
+      </div>
+      <ol class="process">
+        <li><span class="step-n">1</span><h3><span data-l="en">First call</span><span data-l="es">Primera llamada</span></h3><p><span data-l="en">A confidential conversation within a week of getting in touch. No preparation or documents needed.</span><span data-l="es">Una conversación confidencial en menos de una semana desde su primer contacto. No hace falta preparar nada.</span></p></li>
+        <li><span class="step-n">2</span><h3><span data-l="en">Getting to know the business</span><span data-l="es">Conocer la empresa</span></h3><p><span data-l="en">A visit, and a look at the main numbers under an NDA. I'll share how I'd run the company and what would stay the same.</span><span data-l="es">Una visita y una revisión de las cifras principales bajo un acuerdo de confidencialidad. Le contaré cómo dirigiría la empresa y qué se mantendría igual.</span></p></li>
+        <li><span class="step-n">3</span><h3><span data-l="en">Offer</span><span data-l="es">Oferta</span></h3><p><span data-l="en">A non-binding letter of intent setting out price, structure and your role during the handover.</span><span data-l="es">Una carta de intenciones no vinculante con el precio, la estructura y su papel durante la transición.</span></p></li>
+        <li><span class="step-n">4</span><h3><span data-l="en">Due diligence</span><span data-l="es">Due diligence</span></h3><p><span data-l="en">Accountants and lawyers confirm the figures, contracts and risks. I coordinate it to keep the load on you and your team low.</span><span data-l="es">Auditores y abogados confirman las cifras, los contratos y los riesgos. Yo coordino el proceso para que la carga sobre usted y su equipo sea mínima.</span></p></li>
+        <li><span class="step-n">5</span><h3><span data-l="en">Signing and closing</span><span data-l="es">Firma y cierre</span></h3><p><span data-l="en">Most of the price is paid at closing, funded by my investors and bank debt. Part can be paid over time through a seller note.</span><span data-l="es">La mayor parte del precio se paga al cierre, con fondos de mis inversores y deuda bancaria. Una parte puede pagarse de forma aplazada mediante un préstamo del vendedor.</span></p></li>
+        <li><span class="step-n">6</span><h3><span data-l="en">Handover</span><span data-l="es">Transición</span></h3><p><span data-l="en">I join as CEO. You stay for an agreed period to introduce me to clients, staff and suppliers.</span><span data-l="es">Me incorporo como CEO. Usted se queda durante un periodo acordado para presentarme a clientes, empleados y proveedores.</span></p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section alt" id="investors" aria-labelledby="investors-h">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker"><span data-l="en">For investors</span><span data-l="es">Para inversores</span></p>
+        <h2 id="investors-h"><span data-l="en">A traditional search fund</span><span data-l="es">Un search fund tradicional</span></h2>
+        <p data-l="en">80 Grit Capital follows the search fund model taught at IESE and Stanford. A small group of investors funds a full-time search for one company. When I find it, they have the first right to invest in the acquisition, pro rata.</p>
+        <p data-l="es">80 Grit Capital sigue el modelo de search fund que se enseña en el IESE y en Stanford. Un pequeño grupo de inversores financia la búsqueda a tiempo completo de una sola empresa. Cuando la encuentre, tendrán el derecho preferente a invertir en la adquisición, a prorrata.</p>
+      </div>
+      <ol class="process steps-4">
+        <li><span class="step-n">1</span><h3><span data-l="en">Raise</span><span data-l="es">Captación</span></h3><p><span data-l="en">Search capital from a small group of experienced investors. I've bought a unit myself.</span><span data-l="es">Capital de búsqueda de un pequeño grupo de inversores con experiencia. Yo mismo he suscrito una unidad.</span></p></li>
+        <li><span class="step-n">2</span><h3><span data-l="en">Search</span><span data-l="es">Búsqueda</span></h3><p><span data-l="en">Up to 24 months, plus a 6-month option. Mostly direct outreach to owners, the rest through intermediaries.</span><span data-l="es">Hasta 24 meses, más una opción de 6 meses. Sobre todo contacto directo con propietarios; el resto, a través de intermediarios.</span></p></li>
+        <li><span class="step-n">3</span><h3><span data-l="en">Buy</span><span data-l="es">Compra</span></h3><p><span data-l="en">Equity from the search investors, plus senior bank debt and a seller note.</span><span data-l="es">Capital de los inversores de la búsqueda, más deuda bancaria senior y un préstamo del vendedor.</span></p></li>
+        <li><span class="step-n">4</span><h3><span data-l="en">Run</span><span data-l="es">Gestión</span></h3><p><span data-l="en">I lead the company as CEO for 7+ years, with a board of investors and an experienced operator from the sector.</span><span data-l="es">Dirijo la empresa como CEO durante más de 7 años, con un consejo formado por inversores y un operador con experiencia en el sector.</span></p></li>
+      </ol>
+      <div class="status">
+        <span class="pill"><span data-l="en">Raising now</span><span data-l="es">En captación</span></span>
+        <p><span data-l="en">Searching full time since September 2026. First close targeted for Q1 2027. The PPM is available on request.</span><span data-l="es">Buscando a tiempo completo desde septiembre de 2026. Primer cierre previsto para el primer trimestre de 2027. El PPM está disponible bajo petición.</span></p>
+        <a class="btn btn-secondary" href="#contact"><span data-l="en">Request the PPM</span><span data-l="es">Solicitar el PPM</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="name-h">
+    <div class="wrap">
+      <div class="name-note">
+        <span class="grit-badge" aria-hidden="true">80</span>
+        <div class="prose">
+          <h3 id="name-h"><span data-l="en">Why 80 grit</span><span data-l="es">Por qué 80 grit</span></h3>
+          <p data-l="en">The name comes from my woodworking. 80 grit is the sandpaper you use to shape a piece that already exists. It can't build something new, and it's too coarse to finish with. That's the job here: buy a business that already works, and shape it.</p>
+          <p data-l="es">El nombre viene de la carpintería, una de mis aficiones. La lija de grano 80 es la que se usa para dar forma a una pieza que ya existe. No sirve para construir algo nuevo y es demasiado gruesa para el acabado. Ese es el trabajo aquí: comprar una empresa que ya funciona y darle forma.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="contact" aria-labelledby="contact-h">
+    <div class="wrap contact">
+      <div class="prose">
+        <p class="kicker"><span data-l="en">Contact</span><span data-l="es">Contacto</span></p>
+        <h2 id="contact-h"><span data-l="en">Get in touch</span><span data-l="es">Hablemos</span></h2>
+        <p data-l="en">Owners, investors and advisors are welcome to write. If you know an owner who's starting to think about succession, an introduction is the most useful thing you can send me.</p>
+        <p data-l="es">Propietarios, inversores y asesores pueden escribirme. Si conoce a algún empresario que esté empezando a pensar en su sucesión, una presentación es lo más útil que puede enviarme.</p>
+      </div>
+      <div class="contact-card">
+        <div class="contact-row">
+          <span class="k"><span data-l="en">Email</span><span data-l="es">Correo</span></span>
+          <span class="v select" id="email-addr">andrew@80gritcapital.com</span>
+          <button class="copy-btn" type="button" id="copy-email" data-copy="email-addr"><span data-l="en">Copy</span><span data-l="es">Copiar</span></button>
+        </div>
+        <div class="contact-row">
+          <span class="k">LinkedIn</span>
+          <a class="v" href="https://www.linkedin.com/in/mollandrew" target="_blank" rel="noopener">linkedin.com/in/mollandrew</a>
+        </div>
+        <div class="contact-row">
+          <span class="k"><span data-l="en">Office</span><span data-l="es">Oficina</span></span>
+          <span class="v"><span data-l="en">Barcelona, Spain</span><span data-l="es">Barcelona, España</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <span>© 2026 80 Grit Capital · Andrew Moll</span>
+    <span>Barcelona</span>
+  </div>
+</footer>
+
+</div>
+
+<script>
+(function () {
+  var site = document.getElementById('site');
+  var buttons = document.querySelectorAll('[data-set-lang]');
+  function setLang(lang) {
+    site.setAttribute('data-lang', lang);
+    document.documentElement.setAttribute('lang', lang);
+    Array.prototype.forEach.call(buttons, function (b) {
+      b.setAttribute('aria-pressed', b.getAttribute('data-set-lang') === lang ? 'true' : 'false');
+    });
+    try { localStorage.setItem('80grit-lang', lang); } catch (e) {}
+  }
+  var initial = 'en';
+  try {
+    var saved = localStorage.getItem('80grit-lang');
+    if (saved === 'en' || saved === 'es') initial = saved;
+    else if ((navigator.language || '').toLowerCase().indexOf('es') === 0) initial = 'es';
+  } catch (e) {
+    if ((navigator.language || '').toLowerCase().indexOf('es') === 0) initial = 'es';
+  }
+  setLang(initial);
+  Array.prototype.forEach.call(buttons, function (b) {
+    b.addEventListener('click', function () { setLang(b.getAttribute('data-set-lang')); });
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-copy]'), function (btn) {
+    btn.addEventListener('click', function () {
+      var el = document.getElementById(btn.getAttribute('data-copy'));
+      var text = el.textContent.trim();
+      var es = site.getAttribute('data-lang') === 'es';
+      var original = btn.innerHTML;
+      function done(msg) { btn.textContent = msg; setTimeout(function () { btn.innerHTML = original; }, 1800); }
+      function selectIt() {
+        var range = document.createRange(); range.selectNodeContents(el);
+        var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range);
+        done(es ? 'Seleccionado' : 'Selected');
+      }
+      try { navigator.clipboard.writeText(text).then(function () { done(es ? 'Copiado' : 'Copied'); }, selectIt); }
+      catch (e) { selectIt(); }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
