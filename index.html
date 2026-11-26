@@ -2,11 +2,27 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<!-- Google Tag Manager -->
-<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-PV6ZWPL4"></script>
+<!-- Consent Mode v2: everything denied until the visitor accepts -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied',
+    analytics_storage: 'denied', functionality_storage: 'granted', security_storage: 'granted',
+    wait_for_update: 500
+  });
+  (function () {
+    try {
+      var c = JSON.parse(localStorage.getItem('80grit-consent') || 'null');
+      if (c && Date.now() - c.t < 365 * 24 * 3600 * 1000 && c.v === 'accepted') {
+        gtag('consent', 'update', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted' });
+      }
+    } catch (e) {}
+  })();
+</script>
+<!-- Google Tag Manager -->
+<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-PV6ZWPL4"></script>
+<script>
   gtag('js', new Date());
 </script>
 <!-- End Google Tag Manager -->
@@ -196,6 +212,19 @@ h3 { font-family: var(--font-display); font-weight: 600; font-size: 1.2rem; line
 
 .footer { border-top: 1px solid var(--line); }
 .footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding-block: 24px 36px; font-size: 0.8125rem; color: var(--ink-soft); }
+
+/* Cookie banner */
+.cookie-banner { position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px)); pointer-events: none; }
+.cookie-card { pointer-events: auto; max-width: 880px; margin-inline: auto; background: var(--bg); color: var(--ink); border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18); padding: 18px 20px; display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; }
+.cookie-card p { flex: 1 1 360px; min-width: 0; font-size: 0.9rem; line-height: 1.55; color: var(--ink-soft); margin: 0; }
+.cookie-card p strong { color: var(--ink); }
+.cookie-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.cookie-actions button { font: inherit; font-size: 0.9rem; font-weight: 600; padding: 10px 18px; border-radius: 6px; cursor: pointer; border: 1.5px solid var(--accent); min-width: 120px; }
+.cookie-accept { background: var(--accent); color: var(--bg); }
+.cookie-reject { background: var(--bg); color: var(--accent); }
+.cookie-link { font: inherit; background: none; border: 0; padding: 0; color: var(--ink-soft); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.cookie-link:hover { color: var(--ink); }
+@media (max-width: 560px) { .cookie-banner { padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px)); } .cookie-card { padding: 14px 16px; gap: 12px; } .cookie-card p { font-size: 0.8125rem; line-height: 1.45; } .cookie-actions { width: 100%; } .cookie-actions button { flex: 1 1 0; padding: 9px 12px; min-width: 0; } }
 
 @media (max-width: 900px) {
   .hero .wrap, .two-col, .contact { grid-template-columns: minmax(0, 1fr); }
@@ -423,9 +452,19 @@ h3 { font-family: var(--font-display); font-weight: 600; font-size: 1.2rem; line
 <footer class="footer">
   <div class="wrap">
     <span>© 2026 80 Grit Capital · Andrew Moll</span>
-    <span>Barcelona</span>
+    <span><button type="button" class="cookie-link" id="cookie-settings"><span data-l="en">Cookie settings</span><span data-l="es">Configuración de cookies</span></button> · Barcelona</span>
   </div>
 </footer>
+
+<div class="cookie-banner" id="cookie-banner" role="dialog" aria-live="polite" aria-labelledby="cookie-title" hidden>
+  <div class="cookie-card">
+    <p id="cookie-title"><span data-l="en"><strong>Cookies.</strong> With your permission, we use Google analytics cookies to see how the site is used. Nothing is set until you accept, and you can change your choice anytime under "Cookie settings".</span><span data-l="es"><strong>Cookies.</strong> Con su permiso, usamos cookies analíticas de Google para ver cómo se usa el sitio. No se instala ninguna hasta que acepte, y puede cambiar su elección en «Configuración de cookies».</span></p>
+    <div class="cookie-actions">
+      <button type="button" class="cookie-reject" id="cookie-reject"><span data-l="en">Reject</span><span data-l="es">Rechazar</span></button>
+      <button type="button" class="cookie-accept" id="cookie-accept"><span data-l="en">Accept</span><span data-l="es">Aceptar</span></button>
+    </div>
+  </div>
+</div>
 
 </div>
 
@@ -470,6 +509,30 @@ h3 { font-family: var(--font-display); font-weight: 600; font-size: 1.2rem; line
       catch (e) { selectIt(); }
     });
   });
+
+  /* Cookie consent */
+  var banner = document.getElementById('cookie-banner');
+  function readConsent() {
+    try {
+      var c = JSON.parse(localStorage.getItem('80grit-consent') || 'null');
+      if (c && Date.now() - c.t < 365 * 24 * 3600 * 1000) return c.v;
+    } catch (e) {}
+    return null;
+  }
+  function saveConsent(v) {
+    try { localStorage.setItem('80grit-consent', JSON.stringify({ v: v, t: Date.now() })); } catch (e) {}
+    var g = v === 'accepted' ? 'granted' : 'denied';
+    if (typeof gtag === 'function') {
+      gtag('consent', 'update', { ad_storage: g, ad_user_data: g, ad_personalization: g, analytics_storage: g });
+    }
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'consent_update', consent_choice: v });
+    banner.hidden = true;
+  }
+  document.getElementById('cookie-accept').addEventListener('click', function () { saveConsent('accepted'); });
+  document.getElementById('cookie-reject').addEventListener('click', function () { saveConsent('rejected'); });
+  document.getElementById('cookie-settings').addEventListener('click', function () { banner.hidden = false; document.getElementById('cookie-accept').focus(); });
+  if (!readConsent()) banner.hidden = false;
 })();
 </script>
 
